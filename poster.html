@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Póster — Ventana al mar</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <style>
+    @page { size: A4 portrait; margin: 10mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; color: #3a2f25; }
+    .hoja { width: 190mm; height: 275mm; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+    .ventana { height: 215mm; width: auto; display: block; }
+    .pie { flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10mm; }
+    #qr svg { width: 42mm; height: 42mm; display: block; }
+    .texto { max-width: 95mm; }
+    .texto h2 { margin: 0 0 2mm; font-size: 20pt; font-weight: 600; }
+    .texto p { margin: 0; font-size: 11pt; line-height: 1.4; }
+    .aviso { font: 13px system-ui, sans-serif; background: #fff4d6; padding: 10px 14px; margin: 12px auto; max-width: 700px; border-radius: 8px; }
+    @media print { .aviso { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="aviso">
+    Imprimí esta página en A4 con escala al 100 % (Ctrl + P). Mejor en papel mate.
+    El QR apunta a: <b id="dest"></b>
+  </div>
+  <div class="hoja">
+    <img class="ventana" src="marker.png" alt="Ventana">
+    <div class="pie">
+      <div id="qr"></div>
+      <div class="texto">
+        <h2>Ventana al mar</h2>
+        <p>1. Escaneá el código con la cámara del celular.<br>
+           2. Tocá «Abrir la ventana» y permití la cámara.<br>
+           3. Apuntá a la ventana… y asomate.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // El QR apunta a la página AR que está en la misma carpeta (o a ?url=... si se indica)
+    const param = new URLSearchParams(location.search).get('url');
+    const url = param || new URL('./', location.href).href;
+    document.getElementById('dest').textContent = url;
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
+  </script>
+</body>
+</html>

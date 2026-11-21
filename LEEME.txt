@@ -1,0 +1,74 @@
+VENTANA AL MAR — realidad aumentada con QR
+===========================================
+
+Qué hay en esta carpeta
+-----------------------
+  index.html   La experiencia AR (se abre al escanear el QR).
+  playa.js     La playa en 3D: mar animado, arena, palmera, nubes, gaviotas y sonido de olas.
+  marker.png   La ventana dibujada. Es la imagen que la cámara reconoce.
+  poster.html  Hoja A4 para imprimir: la ventana + el QR (se genera solo).
+  prueba.html  Para ver la playa en la PC sin cámara ni impresión.
+  targets.mind (FALTA: lo generás en el paso 1)
+
+
+PASO 1 — Crear targets.mind (2 minutos)
+---------------------------------------
+Es el archivo con los "puntos clave" de la ventana para que la cámara la reconozca.
+  1. Entrá a: https://hiukim.github.io/mind-ar-js-doc/tools/compile
+  2. Arrastrá marker.png y tocá "Start".
+  3. Cuando termine, tocá "Download" y guardá el archivo como targets.mind
+     dentro de esta carpeta.
+Importante: si cambiás marker.png, tenés que volver a hacer este paso.
+
+
+PASO 2 — Subirlo a internet gratis (GitHub Pages)
+-------------------------------------------------
+La cámara del celular solo funciona en páginas https, así que hay que publicarlo.
+  1. Creá una cuenta en https://github.com (si no tenés).
+  2. Botón "+" > "New repository". Nombre: ventana-playa. Marcalo "Public". Create.
+  3. Tocá "uploading an existing file", arrastrá TODOS los archivos de esta
+     carpeta (incluido targets.mind) y tocá "Commit changes".
+  4. En el repositorio: Settings > Pages > Source: "Deploy from a branch",
+     Branch: main, carpeta / (root) > Save.
+  5. Esperá 1–2 minutos. Tu dirección va a ser:
+        https://TU-USUARIO.github.io/ventana-playa/
+
+(Si preferís, también podés subir la carpeta a somosreverie.com.ar, siempre con https.)
+
+
+PASO 3 — Probar en la PC
+------------------------
+Abrí https://TU-USUARIO.github.io/ventana-playa/prueba.html
+Arrastrá con el mouse para mirar y usá W A S D para acercarte o moverte de costado.
+
+
+PASO 4 — Imprimir y pegar
+-------------------------
+  1. Abrí https://TU-USUARIO.github.io/ventana-playa/poster.html
+  2. Ctrl + P > A4, escala 100 %. Papel mate (el brillante refleja y cuesta reconocerlo).
+  3. Pegalo bien plano en la pared, en un lugar con buena luz.
+  Cuanto más grande se imprima la ventana, mejor (A3 queda genial; el QR va aparte
+  si lo agrandás, no hace falta que esté en la misma hoja).
+
+
+PASO 5 — Usarlo
+---------------
+Escaneá el QR con la cámara del celular > "Abrir la ventana" > permitir cámara >
+apuntá a la ventana desde 50 cm a 1,5 m. Moviéndote de costado se ve la profundidad:
+la playa está "detrás" de la pared. Con sonido de olas.
+
+
+Si algo no anda
+---------------
+- Pantalla negra: la página tiene que abrirse con https y hay que aceptar el permiso de cámara.
+- No reconoce la ventana: más luz, menos reflejo, que se vea la hoja entera en la pantalla.
+- La playa tiembla: acercate un poco y mantené el celular más firme.
+- No suena: subí el volumen y sacá el modo silencio (en iPhone, el botón lateral).
+
+
+Para personalizar (en playa.js)
+-------------------------------
+- Colores del cielo: horizon / mid / zenith.
+- Posición del sol: const SUN = new THREE.Vector3(-14, 10, FAR);
+- Altura de las olas: los números 0.05, 0.022, 0.009 dentro de la función del mar.
+- Cantidad de gaviotas: for (let i = 0; i < 4; i++)
